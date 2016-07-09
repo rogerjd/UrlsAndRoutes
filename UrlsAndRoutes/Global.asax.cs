@@ -17,5 +17,16 @@ namespace UrlsAndRoutes
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            /* this works. below is preferable?
+                        Route myRoute = new Route("{controller}/{action}", new MvcRouteHandler());
+                        routes.Add("MyRoute", myRoute);
+            */
+
+            routes.MapRoute("MyRoute", "{controller}/{action}/{id}/{*catchall}",
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+        }
     }
 }
