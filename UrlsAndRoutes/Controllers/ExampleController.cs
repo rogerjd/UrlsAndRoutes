@@ -11,7 +11,13 @@ namespace UrlsAndRoutes.Controllers
         // GET: Example
         public ActionResult Index()
         {
-            return View("Homepage");
+            ViewBag.Message = "Hello";
+            ViewBag.Date = DateTime.Now;
+
+            ViewData["Message"] = "Hello, again";
+            ViewData["Date"] = DateTime.Now;
+                                    //ref: this is ViewData.Model
+            return View("Homepage", (object)"Hello, World");
         }
     }
 }

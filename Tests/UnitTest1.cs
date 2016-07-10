@@ -36,6 +36,12 @@ namespace Tests
 
             ViewResult result = target.Index() as ViewResult;
             Assert.AreEqual("Homepage", result.ViewName);
+            Assert.AreEqual("Hello, World", result.ViewData.Model);
+
+            //ref: shared data structure, keys are the same = data is the same
+            Assert.AreEqual(result.ViewBag.Message, result.ViewData["Message"]);
+
+            Assert.AreEqual("Hello, again", result.ViewData["Message"]);
         }
 
         HttpContextBase CreateHttpContext(string targetUrl = null, string httpMethod = "GET")
